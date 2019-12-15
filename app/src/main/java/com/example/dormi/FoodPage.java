@@ -19,6 +19,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class FoodPage extends AppCompatActivity {
 
@@ -80,7 +81,12 @@ public class FoodPage extends AppCompatActivity {
                 tablayout.addTab(tablayout.newTab().setText(food.getTitle()));
             }
 
-            changeView(0);
+            Calendar cal = Calendar.getInstance();
+            String strWeek = null;
+
+            int nWeek = cal.get(Calendar.DAY_OF_WEEK)-1;
+            tablayout.getTabAt(nWeek).select();
+            changeView(nWeek);
 
             tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
