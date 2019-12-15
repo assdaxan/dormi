@@ -1,11 +1,16 @@
 package com.example.dormi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,6 +32,7 @@ public class NoticePage extends AppCompatActivity {
         setContentView(R.layout.activity_notice_page);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         new NoticePage.Description().execute();
     }
@@ -44,14 +50,17 @@ public class NoticePage extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             try {
                 Document doc = Jsoup.connect("http://dormi.mokpo.ac.kr/www/bbs/board.php?bo_table=notice").get();
-                element = doc.select("#content > div > section > div.board_list > form > table > tbody");
+
+                element = doc.select("#content > div > section > div.board_list > form > table > tbody > tr");
 
                 for(Element elem : element){
-                    String string_num = elem.select("tr:nth-child(1) > td:nth-child(0)").text();
-                    String string_title = elem.select("tr:nth-child(1) > td:nth-child(1)").text();
-                    String string_link = elem.select("tr:nth-child(1) > td:nth-child(1) > nobr > a").attr("href");
-                    String string_date = elem.select("tr:nth-child(1) > td:nth-child(2)").text();
-                    String string_views = elem.select("tr:nth-child(1) > td:nth-child(3)").text();
+                    String string_num = elem.select("td:nth-child(1)").text();
+                    String string_title = elem.select("td:nth-child(2)").text();
+                    String string_link = elem.select("td:nth-child(2) > nobr > a").attr("href");
+                    String string_date = elem.select("td:nth-child(3)").text();
+                    String string_views = elem.select("td:nth-child(4)").text();
+
+                    System.out.println(string_title);
 
                     list.add(new NoticeObject(string_num, string_title, string_link, string_date, string_views));
                 }

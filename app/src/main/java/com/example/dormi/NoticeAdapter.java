@@ -1,5 +1,7 @@
 package com.example.dormi;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +24,28 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
 
         public NoticeViewHolder(View view) {
             super(view);
-            this.title = (TextView) view.findViewById(R.id.textView4);
-            this.date = (TextView) view.findViewById(R.id.textView5);
-            this.views = (TextView) view.findViewById(R.id.textView6);
+            this.title = (TextView) view.findViewById(R.id.title);
+            this.date = (TextView) view.findViewById(R.id.date);
+            this.views = (TextView) view.findViewById(R.id.views);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition() ;
+                    if (pos != RecyclerView.NO_POSITION) {
+                        NoticeObject item = mList.get(pos) ;
+
+                        System.out.println(item.getLink());
+
+                        Uri u = Uri.parse("http://dormi.mokpo.ac.kr/www/bbs/"+item.getLink());
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        System.out.println(u);
+                        intent.setData(u);
+                        v.getContext().startActivity(intent);
+                    }
+                }
+            });
         }
     }
 

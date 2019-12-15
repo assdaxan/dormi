@@ -20,8 +20,10 @@
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="notice"
-        app:srcCompat="@drawable/notice"
-        tools:layout_editor_absoluteX="237dp"
-        tools:layout_editor_absoluteY="301dp" />
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="364dp"
+        android:onClick="NoticePage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/notice" />
 </androidx.constraintlayout.widget.ConstraintLayout>
