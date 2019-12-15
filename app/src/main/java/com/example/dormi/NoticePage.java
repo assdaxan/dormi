@@ -54,15 +54,18 @@ public class NoticePage extends AppCompatActivity {
                 element = doc.select("#content > div > section > div.board_list > form > table > tbody > tr");
 
                 for(Element elem : element){
-                    String string_num = elem.select("td:nth-child(1)").text();
-                    String string_title = elem.select("td:nth-child(2)").text();
-                    String string_link = elem.select("td:nth-child(2) > nobr > a").attr("href");
-                    String string_date = elem.select("td:nth-child(3)").text();
-                    String string_views = elem.select("td:nth-child(4)").text();
+                    String img_link = elem.select("td:nth-child(1) > img").attr("src");
+                    if(img_link.isEmpty()) {
+                        String string_num = elem.select("td:nth-child(1)").text();
+                        String string_title = elem.select("td:nth-child(2)").text();
+                        String string_link = elem.select("td:nth-child(2) > nobr > a").attr("href");
+                        String string_date = elem.select("td:nth-child(3)").text();
+                        String string_views = elem.select("td:nth-child(4)").text();
 
-                    System.out.println(string_title);
+                        System.out.println(string_title);
 
-                    list.add(new NoticeObject(string_num, string_title, string_link, string_date, string_views));
+                        list.add(new NoticeObject(string_num, string_title, string_link, string_date, string_views));
+                    }
                 }
 
             } catch (IOException e) {
