@@ -62,5 +62,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("board", "food_btl");
         startActivity(intent);
     }
+
+    public void OpenLivingSpace(View view){
+        Intent intent = new Intent(MainActivity.this, LivingSpacePage.class);
+        startActivity(intent);
+    }
 }
 

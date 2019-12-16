@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dormi">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.DIAL_PHONE" />
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FoodPage"></activity>
+        <activity android:name=".LivingSpacePage"></activity>
+        <activity android:name=".FoodPage" />
         <activity android:name=".NoticePage" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,5 +21,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
